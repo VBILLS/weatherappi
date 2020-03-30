@@ -1,23 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+async function fetchData() {
+  const res = await fetch(
+    'https://api.darksky.net/forecast/64ba8a3916e562da1c3038e0e454a0e8/'
+  )
+    .then(res => console.log(res.json()))
+    .catch(err => console.log(err));
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App-header'>
+        <h1>Hello!</h1>
+        <button onClick={fetchData}>Click</button>
       </header>
     </div>
   );
