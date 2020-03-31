@@ -12,7 +12,13 @@ function App() {
   async function fetchData(lat, lng) {
     const proxy = 'https://cors-anywhere.herokuapp.com/';
     await fetch(
-      `${proxy}https://api.darksky.net/forecast/64ba8a3916e562da1c3038e0e454a0e8/44.451469599999996,-73.1758752`
+      `${proxy}https://api.darksky.net/forecast/64ba8a3916e562da1c3038e0e454a0e8/${lat},${lng}`,
+      {
+        method: 'GET',
+        headers: new Headers({
+          Accept: 'application/json'
+        })
+      }
     )
       .then(res => {
         console.log('res-fromFetch', res);
@@ -22,6 +28,7 @@ function App() {
         console.log('data-fromFetch', res2);
         setData(res2);
         setCur(res2.currently);
+        return res2;
       })
       .catch(err => console.error);
   }
@@ -31,15 +38,24 @@ function App() {
       navigator.geolocation.getCurrentPosition(function(pos) {
         setLat(pos.coords.latitude);
         setLng(pos.coords.longitude);
-        const position = pos.coords;
-        return position;
+        return;
       });
     }
   }
 
-  async function handleGetWeather() {
-    await getLocation();
-    await fetchData(lat, lng);
+  function handleGetWeather() {
+    const getLocationBeforeGettingWeather = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          const lat2 = pos.coords.latitude;
+          const lng2 = pos.coords.longitude;
+
+          fetchData(lat2, lng2);
+        });
+      }
+    };
+
+    getLocationBeforeGettingWeather();
   }
 
   return (
