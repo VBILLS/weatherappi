@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
-import './App.css';
+import Navbar from './components/Navbar/Navbar.component';
 import WeatherResponse from './components/WeatherResponse/WeatherResponse';
+
+import './assets/css/weather-icons.min.css';
+import './App.css';
 
 function App() {
   const [lat, setLat] = useState('');
@@ -44,44 +47,27 @@ function App() {
   }
 
   function handleGetWeather() {
-    const getLocationBeforeGettingWeather = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(pos) {
-          const lat2 = pos.coords.latitude;
-          const lng2 = pos.coords.longitude;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        const lat2 = pos.coords.latitude;
+        const lng2 = pos.coords.longitude;
 
-          fetchData(lat2, lng2);
-        });
-      }
-    };
-
-    getLocationBeforeGettingWeather();
+        fetchData(lat2, lng2);
+      });
+    }
   }
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <h1>Weather App!!</h1>
-        {lat && lng ? (
-          <div>
-            Your Coordinates Lat: {lat}, Lng: {lng}
-          </div>
-        ) : (
-          <div>Load your Coordinates...</div>
-        )}
-        <br />
-        <button onClick={getLocation}>Get Location</button>
-        <button onClick={handleGetWeather}>GetWeather</button>
-        <br />
+      <Navbar handleGetWeather={handleGetWeather} getLocation={getLocation} />
+      <div className='content-body'>
         {data ? <div>{data.timezone}</div> : <div>waiting for data...</div>}
-        {cur ? (
+        {cur && (
           <div>
             <WeatherResponse cur={cur} />
           </div>
-        ) : (
-          <div>Waiting for current data...</div>
         )}
-      </header>
+      </div>
       <div className='poweredby-div'>
         <a href='https://darksky.net/poweredby/'>Powered By Dark Sky</a>
       </div>
