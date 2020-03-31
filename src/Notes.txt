@@ -1,0 +1,26 @@
+make pages for currently, minutely hourly, daily
+Start on Currently-
+Make a fetch on initial load for weather info
+
+"currently": {
+  "time": 1585672290,
+  "summary": "Partly Cloudy",
+  "icon": "partly-cloudy-day",
+  "nearestStormDistance": 20,
+  "nearestStormBearing": 151,
+  "precipIntensity": 0,
+  "precipProbability": 0,
+  "temperature": 44.6,
+  "apparentTemperature": 41.19,
+  "dewPoint": 33.26,
+  "humidity": 0.64,
+  "pressure": 1018.5,
+  "windSpeed": 6.12,
+  "windGust": 9.94,
+  "windBearing": 335,
+  "cloudCover": 0.36,
+  "uvIndex": 4,
+  "visibility": 10,
+  "ozone": 391.6
+},
+
