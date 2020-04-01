@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
-import Navbar from './components/Navbar/Navbar.component';
+import Header from './components/Header/Header.component';
 import WeatherResponse from './components/WeatherResponse/WeatherResponse';
 
 import './assets/css/weather-icons.min.css';
 import './App.css';
 
 function App() {
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
   const [data, setData] = useState('');
   const [cur, setCur] = useState('');
 
@@ -36,16 +34,6 @@ function App() {
       .catch(err => console.error);
   }
 
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(pos) {
-        setLat(pos.coords.latitude);
-        setLng(pos.coords.longitude);
-        return;
-      });
-    }
-  }
-
   function handleGetWeather() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(pos) {
@@ -59,7 +47,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Navbar handleGetWeather={handleGetWeather} getLocation={getLocation} />
+      <Header handleGetWeather={handleGetWeather} />
       <div className='content-body'>
         {data ? <div>{data.timezone}</div> : <div>waiting for data...</div>}
         {cur && (
