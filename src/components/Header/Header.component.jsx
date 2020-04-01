@@ -35,7 +35,7 @@ const Header = ({ handleGetWeather }) => {
           <NavItem>
             <InputGroup>
               <Input placeholder='Enter your Zip' />
-              <Button outline color='success'>
+              <Button disabled outline color='success'>
                 Search
               </Button>
             </InputGroup>

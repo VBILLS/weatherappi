@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 
 import Header from './components/Header/Header.component';
+import Daily from './components/Daily/Daily';
+import Hourly from './components/Hourly/Hourly';
 import WeatherResponse from './components/WeatherResponse/WeatherResponse';
+
+import { Container, Spinner } from 'reactstrap';
 
 import './assets/css/weather-icons.min.css';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [cur, setCur] = useState('');
+  const [hourly, setHourly] = useState('');
+  const [daily, setDaily] = useState('');
 
   async function fetchData(lat, lng) {
     const proxy = 'https://cors-anywhere.herokuapp.com/';
@@ -27,14 +33,17 @@ function App() {
       })
       .then(res2 => {
         console.log('data-fromFetch', res2);
-        setData(res2);
         setCur(res2.currently);
+        setHourly(res2.hourly);
+        setDaily(res2.daily);
+        setIsLoading(false);
         return res2;
       })
       .catch(err => console.error);
   }
 
   function handleGetWeather() {
+    setIsLoading(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(pos) {
         const lat2 = pos.coords.latitude;
@@ -48,17 +57,22 @@ function App() {
   return (
     <div className='App'>
       <Header handleGetWeather={handleGetWeather} />
-      <div className='content-body'>
-        {data ? <div>{data.timezone}</div> : <div>waiting for data...</div>}
-        {cur && (
-          <div>
-            <WeatherResponse cur={cur} />
-          </div>
-        )}
-      </div>
-      <div className='poweredby-div'>
-        <a href='https://darksky.net/poweredby/'>Powered By Dark Sky</a>
-      </div>
+      <Container fluid className='mt-2'>
+        <div className='content-body'>
+          {isLoading && <Spinner color='light' />}
+          {cur && (
+            <div>
+              <WeatherResponse cur={cur} />
+            </div>
+          )}
+          {hourly && <Hourly hourly={hourly} />}
+
+          {daily && <Daily daily={daily} />}
+        </div>
+        <div className='poweredby-div'>
+          <a href='https://darksky.net/poweredby/'>Powered By Dark Sky</a>
+        </div>
+      </Container>
     </div>
   );
 }
