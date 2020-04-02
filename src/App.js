@@ -4,7 +4,6 @@ import Header from './components/Header/Header.component';
 import MapContainer from './components/MapContainer/MapContainer';
 import Daily from './components/Daily/Daily';
 import Hourly from './components/Hourly/Hourly';
-import SearchBox from './components/SearchBox/SearchBox';
 import WeatherResponse from './components/WeatherResponse/WeatherResponse';
 
 import { Container, Spinner } from 'reactstrap';
@@ -62,7 +61,6 @@ function App() {
 
       <Container fluid className='mt-2'>
         <div className='content-body'>
-          <SearchBox />
           <MapContainer />
           {isLoading && <Spinner color='light' />}
           {cur && (

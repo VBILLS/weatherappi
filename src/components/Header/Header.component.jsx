@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { LocationContext } from '../../Context/LocationContext';
+import SearchBox from '../SearchBox/SearchBox';
+
 import {
   Button,
   Collapse,
-  Input,
-  InputGroup,
   Nav,
   Navbar,
   NavbarBrand,
@@ -17,6 +18,7 @@ import './Header.styles.scss';
 const Header = ({ handleGetWeather }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const location = useContext(LocationContext);
 
   return (
     <Navbar color='dark' dark expand='md'>
@@ -33,12 +35,7 @@ const Header = ({ handleGetWeather }) => {
         </Nav>
         <Nav className='ml-auto' navbar>
           <NavItem>
-            <InputGroup>
-              <Input placeholder='Enter your Zip' />
-              <Button disabled outline color='success'>
-                Search
-              </Button>
-            </InputGroup>
+            <SearchBox />
           </NavItem>
           <NavItem className='ml-2'>
             <Button onClick={handleGetWeather}>
