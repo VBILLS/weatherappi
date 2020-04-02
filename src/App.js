@@ -4,11 +4,12 @@ import Header from './components/Header/Header.component';
 import MapContainer from './components/MapContainer/MapContainer';
 import Daily from './components/Daily/Daily';
 import Hourly from './components/Hourly/Hourly';
+import SearchBox from './components/SearchBox/SearchBox';
 import WeatherResponse from './components/WeatherResponse/WeatherResponse';
 
 import { Container, Spinner } from 'reactstrap';
 
-import './assets/css/weather-icons.min.css';
+import './weathericoncss/css/weather-icons.min.css';
 import './App.css';
 
 function App() {
@@ -58,8 +59,10 @@ function App() {
   return (
     <div className='App'>
       <Header handleGetWeather={handleGetWeather} />
+
       <Container fluid className='mt-2'>
         <div className='content-body'>
+          <SearchBox />
           <MapContainer />
           {isLoading && <Spinner color='light' />}
           {cur && (
