@@ -4,28 +4,36 @@ import { Card, CardTitle, CardText, Col, Container, Row } from 'reactstrap';
 
 function Hourly({ hourly }) {
   const iconClass = hourly.icon;
+  
+  const formatTime = (time) => {
+    const strTime = time.toString()
+    const addMilli = strTime + '000';
+    const convert = parseInt(addMilli, 10)
+    const fullTime = new Date(convert);
+    return fullTime
+  }
+
   return (
     <Container className='TimeBased-div m-2'>
-      <Card style={{ width: '300px' }} className=''>
-        <CardTitle>Hourly</CardTitle>
-        <h1 className='tb-icon'>
-          <i className={'wi wi-forecast-io-' + iconClass}></i>
-        </h1>
-        <h3 className='tb-summary lead'>{hourly.summary}</h3>
-        <CardText>
-          {hourly.data.map(data => {
+        <h1 className='tb'>Hourly Summary:</h1>
+        <i className={'wi wi-forecast-io-' + iconClass}></i>
+        <p className='tb-summary lead'>{hourly.summary}</p>
+
+          {hourly.data.map(data => {  
+           const formattedTime = formatTime(data.time)
+           const icon = data.icon;
             return (
-              <>
-                <Row>{data.summary}</Row>
+              <Card>
+                <CardTitle>{formattedTime.getHours()}</CardTitle>
+                
                 <Row>
+                  <Col><strong><i className={'wi wi-forecast-io-' + icon}></i></strong></Col>
                   <Col>Temp: {data.temperature}</Col>
-                  <Col></Col>
+                  <Col>Feels Like: {data.apparentTemperature}</Col>
                 </Row>
-              </>
+              </Card>
             );
           })}
-        </CardText>
-      </Card>
     </Container>
   );
 }
