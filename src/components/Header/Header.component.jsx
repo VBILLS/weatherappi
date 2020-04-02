@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { LocationContext } from '../../Context/LocationContext';
+
+import GetWeatherButton from '../GetWeatherButton/GetWeatherButton';
 import SearchBox from '../SearchBox/SearchBox';
 
 import {
@@ -15,10 +17,9 @@ import {
 
 import './Header.styles.scss';
 
-const Header = ({ handleGetWeather }) => {
+const Header = ({ handleGetWeatherbyDeviceLoc }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  const location = useContext(LocationContext);
 
   return (
     <Navbar color='dark' dark expand='md'>
@@ -38,9 +39,9 @@ const Header = ({ handleGetWeather }) => {
             <SearchBox />
           </NavItem>
           <NavItem className='ml-2'>
-            <Button onClick={handleGetWeather}>
-              Get Weather <i className='fas fa-thermometer-quarter'></i>
-            </Button>
+            <GetWeatherButton
+              handleGetWeatherbyDeviceLoc={handleGetWeatherbyDeviceLoc}
+            />
           </NavItem>
         </Nav>
       </Collapse>
