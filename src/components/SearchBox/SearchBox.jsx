@@ -17,13 +17,13 @@ function SearchBox() {
       `https://maps.googleapis.com/maps/api/geocode/json?address=${searchField}&key=${apiKey}`
     )
       .then(res => res.json())
-      .then(
-        res => console.log(res)
-        // setLoc({
-        //   lat: res.results[0].geometry.location.lat,
-        //   lng: res.results[0].geometry.location.lng
-        // })
-      )
+      .then(res => {
+        setLoc({
+          lat: res.results[0].geometry.location.lat,
+          lng: res.results[0].geometry.location.lng
+        });
+        console.log(res);
+      })
       .catch(err => console.log(err));
   };
 
