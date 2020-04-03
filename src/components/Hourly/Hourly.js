@@ -2,10 +2,12 @@ import React from 'react';
 
 import { Card, CardTitle, Col, Container, Row } from 'reactstrap';
 
+import './Hourly.styles.scss';
+
 function Hourly({ hourly }) {
   const iconClass = hourly.icon;
 
-  const formatTime = time => {
+  const formatTime = (time) => {
     const strTime = time.toString();
     const addMilli = strTime + '000';
     const convert = parseInt(addMilli, 10);
@@ -15,15 +17,17 @@ function Hourly({ hourly }) {
 
   return (
     <Container className='TimeBased-div m-2'>
-      <h1 className='tb'>Hourly Summary:</h1>
-      <i className={'wi wi-forecast-io-' + iconClass}></i>
-      <p className='tb-summary lead'>{hourly.summary}</p>
+      <div>
+        <h3 className='tb'>Hourly Summary:</h3>
+        <i className={'wi wi-forecast-io-' + iconClass}></i>
+        <p className='tb-summary lead'>{hourly.summary}</p>
+      </div>
 
-      {hourly.data.map(data => {
+      {hourly.data.map((data) => {
         const formattedTime = formatTime(data.time);
         const icon = data.icon;
         return (
-          <Card>
+          <Card className='hourly-card'>
             <Row>
               <Col>
                 <CardTitle>{formattedTime.getHours()}</CardTitle>

@@ -1,0 +1,12 @@
+.TimeBased-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .hourly-card {
+    margin: 3px;
+    width: 200px;
+    height: 100px;
+    color: #615f5f;
+  }
+}

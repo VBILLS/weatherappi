@@ -2,8 +2,9 @@ import React from 'react';
 
 import Header from './components/Header/Header.component';
 import WeatherMain from './pages/WeatherMain/WeatherMain';
+import MapContainer from './components/MapContainer/MapContainer';
 
-import { Container, Spinner } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 import './weathericoncss/css/weather-icons.min.css';
 import './App.css';
@@ -16,7 +17,7 @@ function App() {
         <Header />
         <Container fluid className='mt-2'>
           <div className='content-body'>
-            {/* {isLoading && <Spinner color='light' />} */}
+            <MapContainer />
             <WeatherMain />
           </div>
           <div className='poweredby-div'>

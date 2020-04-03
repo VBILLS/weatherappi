@@ -24,15 +24,15 @@ function WeatherMain() {
       {
         method: 'GET',
         headers: new Headers({
-          Accept: 'application/json'
-        })
+          Accept: 'application/json',
+        }),
       }
     )
-      .then(res => {
+      .then((res) => {
         console.log('res-fromFetch', res);
         return res.json();
       })
-      .then(res2 => {
+      .then((res2) => {
         console.log('data-fromFetch', res2);
         setCur(res2.currently);
         setHourly(res2.hourly);
@@ -40,7 +40,7 @@ function WeatherMain() {
         setIsLoading(false);
         console.log(res2);
       })
-      .catch(err => console.error);
+      .catch((err) => console.error);
   }
 
   function handleGetWeather() {
@@ -48,7 +48,7 @@ function WeatherMain() {
     if (loc.lat && loc.lng) {
       fetchWeatherData(loc.lat, loc.lng);
     } else if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(pos) {
+      navigator.geolocation.getCurrentPosition(function (pos) {
         const lat2 = pos.coords.latitude;
         const lng2 = pos.coords.longitude;
         setLoc({ lat: lat2, lng: lng2 });
