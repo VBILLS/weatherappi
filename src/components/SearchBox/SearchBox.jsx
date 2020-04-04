@@ -25,12 +25,12 @@ function SearchBox() {
             lat: info.geometry.location.lat,
             lng: info.geometry.location.lng,
             foradd: info.formatted_address,
+            address_components: info.address_components,
           });
+          console.log('res-after-setLoc', res);
         } else {
           console.log(res.status);
         }
-        console.log(res);
-        console.log(loc);
       })
       .catch((err) => console.log(err));
   };

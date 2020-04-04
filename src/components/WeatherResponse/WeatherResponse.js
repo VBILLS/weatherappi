@@ -8,16 +8,17 @@ function WeatherResponse({ cur }) {
   return (
     <Container className='WeatherResponse-div m-2'>
       <Card style={{ width: '300px' }} className='currently'>
-        <h1 className='cur-icon'>
-          <i className={'wi wi-forecast-io-' + iconClass}></i>
-        </h1>
-        <h3 className='cur-summary lead'>{cur.summary}</h3>
+        <div className='main-title-curSum'>
+          <h1 className='cur-icon'>
+            <i className={'wi wi-forecast-io-' + iconClass}></i>
+          </h1>
+          <h3 className='cur-summary lead'>{cur.summary}</h3>
+        </div>
         <CardTitle className='cur-temCardTitleerature lead'>
           Temp: <strong>{cur.temperature}</strong>
-          <br />
           Feels Like: <strong>{cur.apparentTemperature}</strong>
         </CardTitle>
-        <CardText>
+        <CardText className='card-text-curSum'>
           <Row className='cur-dew-hum'>
             <Col>Dew Point: {cur.dewPoint}</Col>
             <Col>Humidity: {cur.humidity}</Col>

@@ -1,5 +1,27 @@
 .WeatherResponse-div {
+  width: 100%;
+
+  .main-title-curSum {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .currently {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+
   .card {
     background-color: #5e636e;
+    padding: 0.5rem;
+
+    .cur-temCardTitleerature {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
   }
 }

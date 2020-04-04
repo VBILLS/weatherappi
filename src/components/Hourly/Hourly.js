@@ -47,9 +47,10 @@ function Hourly() {
                   </strong>
                 </CardTitle>
                 <CardText>
-                  <i class='fas fa-thermometer-half'></i> {data.temperature}
+                  <i className='fas fa-thermometer-half'></i> {data.temperature}
+                  <br />
+                  <i className='fas fa-umbrella'></i> {data.precipProbability}
                 </CardText>
-                <CardText>Feels Like: {data.apparentTemperature}</CardText>
               </Card>
             );
           })}

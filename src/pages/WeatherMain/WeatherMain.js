@@ -3,17 +3,42 @@ import React, { useContext, useState } from 'react';
 import { LocationContext } from '../../Context/LocationContext';
 import { WeatherContext } from '../../Context/WeatherContext';
 
-import Daily from '../../components/Daily/Daily';
-import Hourly from '../../components/Hourly/Hourly';
 import WeatherResponse from '../../components/WeatherResponse/WeatherResponse';
 
 import { Button, Spinner } from 'reactstrap';
+
+import './WeatherMain.styles.scss';
 
 function WeatherMain() {
   const [loc, setLoc] = useContext(LocationContext);
   const [weather, setWeather] = useContext(WeatherContext);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  async function handleGetLocName() {
+    console.log('starting handleGetLocName');
+    const apiKey =
+      process.env.REACT_APP_API_KEY ||
+      'AIzaSyBzsDMLmaZ91T06pJfGu_6iqT2OW45w4LQ';
+
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc.lat},${loc.lng}&key=${apiKey}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 'OK') {
+          console.log('res-after-latLngCallLoc', res);
+          setLoc({
+            ...loc,
+            address_components: res.results,
+            foradd: res.results[5].formatted_address,
+          });
+        } else {
+          console.log(res.status);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
 
   async function fetchWeatherData(lat, lng) {
     const proxy = 'https://cors-anywhere.herokuapp.com/';
@@ -38,12 +63,14 @@ function WeatherMain() {
 
   function handleGetWeather() {
     if (loc.lat && loc.lng) {
+      console.log('locationfromContext');
       fetchWeatherData(loc.lat, loc.lng);
     } else if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (pos) {
         const lat2 = pos.coords.latitude;
         const lng2 = pos.coords.longitude;
         setLoc({ lat: lat2, lng: lng2 });
+        console.log('from geolocation');
         fetchWeatherData(lat2, lng2);
       });
     }
@@ -54,7 +81,24 @@ function WeatherMain() {
       {isLoading ? (
         <Spinner />
       ) : (
-        <Button onClick={handleGetWeather}>Get Weather</Button>
+        <div>
+          <Button onClick={handleGetWeather}>Get Weather</Button>
+          <Button onClick={handleGetLocName}>Get Location Name</Button>
+          <br />
+          <select>
+            {loc.address_components ? (
+              loc.address_components.map((component) => {
+                return (
+                  <option key={component.place_id}>
+                    {component.formatted_address}
+                  </option>
+                );
+              })
+            ) : (
+              <option>Waiting for data</option>
+            )}
+          </select>
+        </div>
       )}
       <WeatherResponse cur={weather.currently} />
     </div>
