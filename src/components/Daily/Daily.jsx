@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card, CardTitle, CardText, Col, Container, Row } from 'reactstrap';
+import { Card, CardTitle, Col, Container, Row } from 'reactstrap';
 
 function Daily({ daily }) {
   const iconClass = daily.icon;
@@ -12,24 +12,24 @@ function Daily({ daily }) {
           <i className={'wi wi-forecast-io-' + iconClass}></i>
         </h1>
         <p className='tb-summary lead'>{daily.summary}</p>
-        <CardText className='daily-text'>
-          {daily.data.map(data => {
-            return (
-              <>
-                <Row>
-                  <Col>Sunrise: {data.sunriseTime}</Col>
-                  <Col>Sunset: {data.sunsetTime}</Col>
-                  <Col>MoonPhase: {data.moonPhase}</Col>
-                </Row>
-                <Row>
-                  <Col>Temp Min: {data.temperatureMin}</Col>
-                  <Col>Temp Max: {data.temperatureMax}</Col>
-                </Row>
-              </>
-            );
-          })}
-        </CardText>
       </Card>
+
+      {daily.data &&
+        daily.data.map((data) => {
+          return (
+            <Card>
+              <Row>
+                <Col>Sunrise: {data.sunriseTime}</Col>
+                <Col>Sunset: {data.sunsetTime}</Col>
+                <Col>MoonPhase: {data.moonPhase}</Col>
+              </Row>
+              <Row>
+                <Col>Temp Min: {data.temperatureMin}</Col>
+                <Col>Temp Max: {data.temperatureMax}</Col>
+              </Row>
+            </Card>
+          );
+        })}
     </Container>
   );
 }

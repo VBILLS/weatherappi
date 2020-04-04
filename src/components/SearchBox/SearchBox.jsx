@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { LocationContext } from '../../Context/LocationContext';
 
-import { Button, Input, InputGroup, Label } from 'reactstrap';
+import { Button, Input, InputGroup } from 'reactstrap';
 
 function SearchBox() {
   const [searchField, setSearchField] = useState('');

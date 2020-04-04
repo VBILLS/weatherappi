@@ -1,18 +1,17 @@
 import React, { useContext, useState } from 'react';
 
 import { LocationContext } from '../../Context/LocationContext';
+import { WeatherContext } from '../../Context/WeatherContext';
 
 import Daily from '../../components/Daily/Daily';
 import Hourly from '../../components/Hourly/Hourly';
 import WeatherResponse from '../../components/WeatherResponse/WeatherResponse';
 
-import { Button } from 'reactstrap';
+import { Button, Spinner } from 'reactstrap';
 
 function WeatherMain() {
   const [loc, setLoc] = useContext(LocationContext);
-  const [cur, setCur] = useState('');
-  const [hourly, setHourly] = useState('');
-  const [daily, setDaily] = useState('');
+  const [weather, setWeather] = useContext(WeatherContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,17 +27,11 @@ function WeatherMain() {
         }),
       }
     )
-      .then((res) => {
-        console.log('res-fromFetch', res);
-        return res.json();
-      })
-      .then((res2) => {
-        console.log('data-fromFetch', res2);
-        setCur(res2.currently);
-        setHourly(res2.hourly);
-        setDaily(res2.daily);
+      .then((res) => res.json())
+      .then((weathData) => {
+        setWeather(weathData);
         setIsLoading(false);
-        console.log(res2);
+        console.log(weathData);
       })
       .catch((err) => console.error);
   }
@@ -58,12 +51,12 @@ function WeatherMain() {
 
   return (
     <div className='weatherMain'>
-      <Button onClick={handleGetWeather}>Get Weather</Button>
-      <WeatherResponse cur={cur} />
-      {/* {cur && <div></div>} */}
-      {hourly && <Hourly hourly={hourly} />}
-
-      {daily && <Daily daily={daily} />}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Button onClick={handleGetWeather}>Get Weather</Button>
+      )}
+      <WeatherResponse cur={weather.currently} />
     </div>
   );
 }

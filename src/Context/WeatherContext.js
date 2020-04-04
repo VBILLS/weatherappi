@@ -2,12 +2,21 @@ import React, { createContext, useMemo, useState } from 'react';
 
 export const WeatherContext = createContext();
 
-export function LocationProvider(props) {
-  const [weather, setWeather] = useState({});
+export function WeatherProvider(props) {
+  const [weather, setWeather] = useState({
+    latitude: '',
+    longitude: '',
+    timezone: '',
+    currently: {},
+    minutely: {},
+    hourly: {},
+    daily: {},
+    flags: {},
+  });
   const value = useMemo(() => [weather, setWeather], [weather]);
   return (
-    <LocationContext.Provider value={value}>
+    <WeatherContext.Provider value={value}>
       {props.children}
-    </LocationContext.Provider>
+    </WeatherContext.Provider>
   );
 }

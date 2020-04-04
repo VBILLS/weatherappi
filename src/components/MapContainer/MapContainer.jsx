@@ -18,14 +18,13 @@ function MapContainer() {
     }
   };
 
-  // useEffect(() => {
-  //   getInitialLocation();
-  // });
+  useEffect(() => {
+    getInitialLocation();
+  }, [loc]);
 
   return (
     <div className='mapcontainer'>
-      <h3>CurLoc: {loc.foradd}</h3>
-      <button onClick={getInitialLocation}>Get Loc</button>
+      <h3>{loc.foradd}</h3>
       <LoadScript
         googleMapsApiKey='AIzaSyBzsDMLmaZ91T06pJfGu_6iqT2OW45w4LQ'
         googleMapsClientId='899476668967-dvt8f7rdo7k8kc8ao30cmuqrrlhuinoc.apps.googleusercontent.com'

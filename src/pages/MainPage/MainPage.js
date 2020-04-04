@@ -1,21 +1,23 @@
 import React from 'react';
 
 import MapContainer from '../../components/MapContainer/MapContainer';
-// import WeatherResponse from '../../components/WeatherResponse/WeatherResponse';
+import Hourly from '../../components/Hourly/Hourly';
 import WeatherMain from '../WeatherMain/WeatherMain';
 
-import { Col, Row } from 'reactstrap';
+import { Container } from 'reactstrap';
+import './MainPage.styles.scss';
 
-const MainPage = ({ cur }) => {
+const MainPage = () => {
   return (
-    <Row>
-      <Col>
+    <Container fluid>
+      <div className='mainpage-map-curtemp'>
         <MapContainer />
-      </Col>
-      <Col>
         <WeatherMain />
-      </Col>
-    </Row>
+      </div>
+      <div className='hourly-summary'>
+        <Hourly />
+      </div>
+    </Container>
   );
 };
 
