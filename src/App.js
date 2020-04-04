@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Header from './components/Header/Header.component';
-import WeatherMain from './pages/WeatherMain/WeatherMain';
-import MapContainer from './components/MapContainer/MapContainer';
+import MainPage from './pages/MainPage/MainPage';
 
-import { Container } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 
 import './weathericoncss/css/weather-icons.min.css';
 import './App.css';
@@ -16,10 +15,7 @@ function App() {
       <LocationProvider>
         <Header />
         <Container fluid className='mt-2'>
-          <div className='content-body'>
-            <MapContainer />
-            <WeatherMain />
-          </div>
+          <MainPage />
           <div className='poweredby-div'>
             <a href='https://darksky.net/poweredby/'>Powered By Dark Sky</a>
           </div>

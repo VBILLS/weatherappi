@@ -19,11 +19,18 @@ function SearchBox() {
     )
       .then((res) => res.json())
       .then((res) => {
-        setLoc({
-          lat: res.results[0].geometry.location.lat,
-          lng: res.results[0].geometry.location.lng,
-        });
+        if (res.status === 'OK') {
+          const info = res.results[0];
+          setLoc({
+            lat: info.geometry.location.lat,
+            lng: info.geometry.location.lng,
+            foradd: info.formatted_address,
+          });
+        } else {
+          console.log(res.status);
+        }
         console.log(res);
+        console.log(loc);
       })
       .catch((err) => console.log(err));
   };

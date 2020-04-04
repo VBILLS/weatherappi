@@ -44,7 +44,6 @@ function WeatherMain() {
   }
 
   function handleGetWeather() {
-    console.log('start of handleGetWeatherbyDeviceLoc --', loc);
     if (loc.lat && loc.lng) {
       fetchWeatherData(loc.lat, loc.lng);
     } else if (navigator.geolocation) {
@@ -60,11 +59,8 @@ function WeatherMain() {
   return (
     <div className='weatherMain'>
       <Button onClick={handleGetWeather}>Get Weather</Button>
-      {cur && (
-        <div>
-          <WeatherResponse cur={cur} />
-        </div>
-      )}
+      <WeatherResponse cur={cur} />
+      {/* {cur && <div></div>} */}
       {hourly && <Hourly hourly={hourly} />}
 
       {daily && <Daily daily={daily} />}
