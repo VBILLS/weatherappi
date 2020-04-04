@@ -1,0 +1,17 @@
+.dailymain-div {
+  margin: 2px;
+}
+.daily-cards {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .daily-card {
+    width: 200px;
+    color: #000000;
+    font-size: small;
+  }
+}

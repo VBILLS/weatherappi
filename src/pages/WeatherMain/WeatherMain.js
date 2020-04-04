@@ -55,14 +55,18 @@ function WeatherMain() {
       .then((res) => res.json())
       .then((weathData) => {
         setWeather(weathData);
+        localStorage.setItem('WeatherResults', JSON.stringify(weathData));
         setIsLoading(false);
-        console.log(weathData);
+        console.log();
       })
       .catch((err) => console.error);
   }
 
   function handleGetWeather() {
-    if (loc.lat && loc.lng) {
+    const results = JSON.parse(localStorage.getItem('WeatherResults'));
+    if (results) {
+      setWeather(results);
+    } else if (loc.lat && loc.lng) {
       console.log('locationfromContext');
       fetchWeatherData(loc.lat, loc.lng);
     } else if (navigator.geolocation) {
@@ -74,6 +78,8 @@ function WeatherMain() {
         fetchWeatherData(lat2, lng2);
       });
     }
+
+    return;
   }
 
   return (
@@ -84,20 +90,6 @@ function WeatherMain() {
         <div>
           <Button onClick={handleGetWeather}>Get Weather</Button>
           <Button onClick={handleGetLocName}>Get Location Name</Button>
-          <br />
-          <select>
-            {loc.address_components ? (
-              loc.address_components.map((component) => {
-                return (
-                  <option key={component.place_id}>
-                    {component.formatted_address}
-                  </option>
-                );
-              })
-            ) : (
-              <option>Waiting for data</option>
-            )}
-          </select>
         </div>
       )}
       <WeatherResponse cur={weather.currently} />

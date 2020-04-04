@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { LocationContext } from '../../Context/LocationContext';
 
 import MapContainer from '../../components/MapContainer/MapContainer';
+import Daily from '../../components/Daily/Daily';
 import Hourly from '../../components/Hourly/Hourly';
 import WeatherMain from '../WeatherMain/WeatherMain';
 
@@ -31,6 +32,9 @@ const MainPage = () => {
       <div className='mainpage-map-curtemp'>
         <MapContainer />
         <WeatherMain />
+      </div>
+      <div className='daily-summary'>
+        <Daily />
       </div>
       <div className='hourly-summary'>
         <Hourly />

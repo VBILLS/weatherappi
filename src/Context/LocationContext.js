@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState, useReducer } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 
 export const LocationContext = createContext();
 
@@ -17,18 +17,3 @@ export function LocationProvider(props) {
     </LocationContext.Provider>
   );
 }
-
-//dispatch action to update state for location after lat/lng update
-// const [state, dispatch] = useReducer(reducer, { loc });
-// function reducer(state, action) {
-//   switch (action.type) {
-//     case 'update':
-//       return {
-//         ...loc,
-//         fradd: formatted_address,
-//         address_components: address_components,
-//       };
-//     default:
-//       console.log('default action...?');
-//   }
-// }

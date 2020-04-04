@@ -20,7 +20,7 @@ function Hourly() {
   };
 
   return (
-    <Container fluid className='TimeBased-div m-2'>
+    <Container fluid className='hourlymain-div m-2'>
       <div className='hourly-title'>
         <h3 className='tb'>Hourly:</h3>
         <div className='hourly-icon-main'>
