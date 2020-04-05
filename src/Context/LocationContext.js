@@ -4,9 +4,9 @@ export const LocationContext = createContext();
 
 export function LocationProvider(props) {
   const [loc, setLoc] = useState({
-    lat: 44,
-    lng: -73,
-    foradd: 'Current Location...',
+    lat: 44.4758442,
+    lng: -73.212121,
+    foradd: 'Burlington, VT 05401, USA',
     address_components: [],
   });
 

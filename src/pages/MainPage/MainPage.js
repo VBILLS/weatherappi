@@ -11,21 +11,7 @@ import { Container } from 'reactstrap';
 import './MainPage.styles.scss';
 
 const MainPage = () => {
-  const [loc, setLoc] = useContext(LocationContext);
-
-  const getDeviceLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        const lat2 = pos.coords.latitude;
-        const lng2 = pos.coords.longitude;
-        setLoc({ lat: lat2, lng: lng2 });
-      });
-    }
-  };
-
-  useEffect(() => {
-    getDeviceLocation();
-  }, []);
+  const [loc] = useContext(LocationContext);
 
   return (
     <Container fluid>
@@ -33,11 +19,9 @@ const MainPage = () => {
         <MapContainer />
         <WeatherMain />
       </div>
-      <div className='daily-summary'>
-        <Daily />
-      </div>
-      <div className='hourly-summary'>
+      <div className='main-summaries'>
         <Hourly />
+        <Daily />
       </div>
     </Container>
   );

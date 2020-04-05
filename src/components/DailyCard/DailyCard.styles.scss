@@ -1,0 +1,20 @@
+.daily-card {
+  width: 50%;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 0.7rem;
+  color: #615f5f;
+  padding: 2px;
+  text-align: center;
+
+  .dayIcon-daily-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    .dow-daily-card {
+      font-weight: bold;
+    }
+  }
+}

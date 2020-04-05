@@ -3,13 +3,10 @@
   justify-content: space-around;
 }
 
-.hourly-summary {
+.main-summaries {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-.daily-summary {
-  width: 100%;
-  margin: 0px;
+  justify-content: center;
 }
