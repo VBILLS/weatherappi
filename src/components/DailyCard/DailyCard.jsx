@@ -55,7 +55,11 @@ const DailyCard = ({ data }) => {
   let sunset = `${sethours}:${setMin}`;
 
   return (
-    <Card className='daily-card' key={data.time}>
+    <Card
+      className='daily-card'
+      style={{ backgroundColor: '#4d375c' }}
+      key={data.time}
+    >
       <Row noGutters>
         <Col className='dayIcon-daily-card'>
           <span className='dow-daily-card'>

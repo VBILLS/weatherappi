@@ -55,7 +55,6 @@ function WeatherMain() {
       .then((res) => res.json())
       .then((weathData) => {
         setWeather(weathData);
-        localStorage.setItem('WeatherResults', JSON.stringify(weathData));
         setIsLoading(false);
         console.log();
       })
@@ -63,10 +62,7 @@ function WeatherMain() {
   }
 
   function handleGetWeather() {
-    const results = JSON.parse(localStorage.getItem('WeatherResults'));
-    if (results) {
-      setWeather(results);
-    } else if (loc.lat && loc.lng) {
+    if (loc.lat && loc.lng) {
       console.log('locationfromContext');
       fetchWeatherData(loc.lat, loc.lng);
     } else if (navigator.geolocation) {
@@ -98,3 +94,8 @@ function WeatherMain() {
 }
 
 export default WeatherMain;
+
+// const results = JSON.parse(localStorage.getItem('WeatherResults'));
+//     if (results) {
+//       setWeather(results);
+//     } else

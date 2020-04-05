@@ -3,7 +3,7 @@
   display: flex;
   flex: 0 0 auto;
   font-size: 0.7rem;
-  color: #615f5f;
+  color: #cfcfcf;
   padding: 2px;
   text-align: center;
 
@@ -15,6 +15,10 @@
 
     .dow-daily-card {
       font-weight: bold;
+    }
+
+    .icon-daily-card {
+      font-size: 1rem;
     }
   }
 }

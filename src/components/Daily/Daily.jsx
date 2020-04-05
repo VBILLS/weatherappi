@@ -4,7 +4,7 @@ import { WeatherContext } from '../../Context/WeatherContext';
 
 import DailyCard from '../DailyCard/DailyCard';
 
-import { Card, Col, Container, Row } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 import './Daily.styles.scss';
 

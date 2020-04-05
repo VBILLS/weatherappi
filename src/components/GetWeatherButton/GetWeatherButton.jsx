@@ -28,7 +28,6 @@ function GetWeatherButton() {
         console.log('weathData...', weathData);
         setWeather(weathData);
         setIsLoading(false);
-        console.log(weathData);
       })
       .catch((err) => console.error);
   }
