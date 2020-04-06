@@ -1,6 +1,4 @@
-import React, { useContext } from 'react';
-
-import { LocationContext } from '../../Context/LocationContext';
+import React from 'react';
 
 import MapContainer from '../../components/MapContainer/MapContainer';
 import Daily from '../../components/Daily/Daily';
@@ -11,8 +9,6 @@ import { Container } from 'reactstrap';
 import './MainPage.styles.scss';
 
 const MainPage = () => {
-  const [loc] = useContext(LocationContext);
-
   return (
     <Container fluid>
       <div className='mainpage-map-curtemp'>

@@ -10,9 +10,7 @@ function SearchBox() {
   const setLatLngBySearch = (e) => {
     e.preventDefault();
     setSearchField(e.target.value);
-    const apiKey =
-      process.env.REACT_APP_API_KEY ||
-      'AIzaSyBzsDMLmaZ91T06pJfGu_6iqT2OW45w4LQ';
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${searchField}&key=${apiKey}`

@@ -17,9 +17,7 @@ function WeatherMain() {
 
   async function handleGetLocName() {
     console.log('starting handleGetLocName');
-    const apiKey =
-      process.env.REACT_APP_API_KEY ||
-      'AIzaSyBzsDMLmaZ91T06pJfGu_6iqT2OW45w4LQ';
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc.lat},${loc.lng}&key=${apiKey}`
@@ -63,7 +61,7 @@ function WeatherMain() {
 
   function handleGetWeather() {
     if (loc.lat && loc.lng) {
-      console.log('locationfromContext');
+      console.log('locationfromContext - ', loc);
       fetchWeatherData(loc.lat, loc.lng);
     } else if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (pos) {

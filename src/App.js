@@ -1,4 +1,5 @@
 import React from 'react';
+import { config } from 'dotenv';
 
 import Header from './components/Header/Header.component';
 import MainPage from './pages/MainPage/MainPage';
