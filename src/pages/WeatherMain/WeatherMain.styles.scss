@@ -1,6 +1,28 @@
 .weatherMain {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  .weatherMain-button-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    @media screen and (max-width: 411px) {
+      flex-direction: column;
+      margin: 3px;
+      padding: 3px;
+    }
+
+    .weatherMain-button {
+      font-size: small;
+      background-color: #514158;
+      border: none;
+      box-shadow: 4px 2px 2px #00000099;
+    }
+  }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import MapContainer from '../../components/MapContainer/MapContainer';
 import Daily from '../../components/Daily/Daily';
-import Hourly from '../../components/Hourly/Hourly';
+import Hourly from '../../components/Hourly/Hourly.component';
 import WeatherMain from '../WeatherMain/WeatherMain';
 
 import { Container } from 'reactstrap';

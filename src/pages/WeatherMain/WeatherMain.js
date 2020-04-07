@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { LocationContext } from '../../Context/LocationContext';
 import { WeatherContext } from '../../Context/WeatherContext';
 
+import CustButton from '../../components/CustButton/CustButton.component';
 import WeatherResponse from '../../components/WeatherResponse/WeatherResponse';
 
 import { Button, Spinner } from 'reactstrap';
@@ -38,10 +39,8 @@ function WeatherMain() {
             address_components: res.results,
             foradd: res.results[5].formatted_address,
           });
-          setIsLoading(false);
         } else {
           console.log(res.status);
-          setIsLoading(false);
         }
       })
       .catch((err) => console.log(err));
@@ -65,7 +64,7 @@ function WeatherMain() {
       .then((weathData) => {
         setWeather(weathData);
         setIsLoading(false);
-        console.log('setweathdata', loc.lat);
+        console.log('setweathdata - run');
       })
       .catch((err) => console.error);
   }
@@ -75,10 +74,19 @@ function WeatherMain() {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div>
-          <Button onClick={getCurrentLocation}>Get Current Location</Button>
-          <Button onClick={fetchWeatherData}>Get Weather</Button>
-          <Button onClick={handleGetLocName}>Get Location Name</Button>
+        <div className='weatherMain-button-div'>
+          <CustButton
+            className='weatherMain-button'
+            onClick={getCurrentLocation}
+          >
+            <i className='fas fa-location-arrow'></i>
+          </CustButton>
+          <CustButton className='weatherMain-button' onClick={fetchWeatherData}>
+            Get Weather
+          </CustButton>
+          <CustButton className='weatherMain-button' onClick={handleGetLocName}>
+            Get Location Name
+          </CustButton>
         </div>
       )}
       <WeatherResponse cur={weather.currently} />

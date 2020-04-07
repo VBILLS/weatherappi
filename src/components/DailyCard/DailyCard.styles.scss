@@ -1,11 +1,13 @@
 .daily-card {
+  color: #000000;
   width: 50%;
+  min-height: 50%;
   display: flex;
   flex: 0 0 auto;
   font-size: 0.7rem;
-  color: #cfcfcf;
   padding: 2px;
   text-align: center;
+  background-color: #514158;
 
   .dayIcon-daily-card {
     display: flex;

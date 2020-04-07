@@ -13,9 +13,7 @@ import {
   NavbarText,
 } from 'reactstrap';
 
-import './Header.styles.scss';
-
-const Header = ({ handleGetWeatherbyDeviceLoc }) => {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -36,10 +34,8 @@ const Header = ({ handleGetWeatherbyDeviceLoc }) => {
           <NavItem>
             <SearchBox />
           </NavItem>
-          <NavItem className='ml-2'>
-            <GetWeatherButton
-              handleGetWeatherbyDeviceLoc={handleGetWeatherbyDeviceLoc}
-            />
+          <NavItem className='nav-getWeatherButton ml-2'>
+            <GetWeatherButton />
           </NavItem>
         </Nav>
       </Collapse>

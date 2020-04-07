@@ -2,9 +2,17 @@ import React, { useContext } from 'react';
 
 import { WeatherContext } from '../../Context/WeatherContext';
 
-import { Card, CardTitle, CardText, Container } from 'reactstrap';
+import {
+  HourlyContainer,
+  HourlyCardsContainer,
+  HourlyCardContainer,
+  HourlyIcon,
+  HourlySummary,
+  HourlyTitle,
+  HourlyTitleContainer,
+} from './Hourly.styles';
 
-import './Hourly.styles.scss';
+import { CardTitle, CardText } from 'reactstrap';
 
 function Hourly() {
   const [weather] = useContext(WeatherContext);
@@ -20,26 +28,22 @@ function Hourly() {
   };
 
   return (
-    <Container fluid className='hourlymain-div m-2'>
-      <div className='hourly-title'>
-        <h3 className='tb'>Hourly:</h3>
-        <div className='hourly-icon-main'>
-          <i className={'wi wi-forecast-io-' + iconClass}></i>
-        </div>
-        <p className='hourly-summary-main'>{hourly.summary}</p>
-      </div>
+    <HourlyContainer>
+      <HourlyTitleContainer>
+        <HourlyTitle>Hourly:</HourlyTitle>
+        <HourlyIcon className={'wi wi-forecast-io-' + iconClass}></HourlyIcon>
+        <HourlySummary className='hourly-summary-main'>
+          {hourly.summary}
+        </HourlySummary>
+      </HourlyTitleContainer>
 
-      <div className='hourly-cards'>
+      <HourlyCardsContainer>
         {hourly.data &&
           hourly.data.map((data) => {
             const formattedTime = formatTime(data.time);
             const icon = data.icon;
             return (
-              <Card
-                className='hourly-card'
-                key={data.time}
-                style={{ width: '3rem', height: '4rem' }}
-              >
+              <HourlyCardContainer key={data.time}>
                 <CardTitle>
                   {formattedTime.getHours()} -
                   <strong>
@@ -51,11 +55,11 @@ function Hourly() {
                   <br />
                   <i className='fas fa-umbrella'></i> {data.precipProbability}
                 </CardText>
-              </Card>
+              </HourlyCardContainer>
             );
           })}
-      </div>
-    </Container>
+      </HourlyCardsContainer>
+    </HourlyContainer>
   );
 }
 

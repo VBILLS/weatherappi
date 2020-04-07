@@ -2,6 +2,12 @@ import React from 'react';
 
 import { Card, Col, Row } from 'reactstrap';
 
+import {
+  DailyCardContainer,
+  DailyCardTitleContainer,
+  DailySummaryContainer,
+} from './DailyCard.styles';
+
 import './DailyCard.styles.scss';
 
 const DailyCard = ({ data }) => {
@@ -55,21 +61,17 @@ const DailyCard = ({ data }) => {
   let sunset = `${sethours}:${setMin}`;
 
   return (
-    <Card
-      className='daily-card'
-      style={{ backgroundColor: '#4d375c' }}
-      key={data.time}
-    >
+    <DailyCardContainer key={data.time}>
       <Row noGutters>
-        <Col className='dayIcon-daily-card'>
+        <DailyCardTitleContainer>
           <span className='dow-daily-card'>
             {getDay(formattedTime.getDay())}
           </span>
           <strong className='icon-daily-card'>
             <i className={'wi wi-forecast-io-' + icon}></i>
           </strong>
-        </Col>
-        <Col className='summary-daily-card'>{data.summary}</Col>
+        </DailyCardTitleContainer>
+        <DailySummaryContainer>{data.summary}</DailySummaryContainer>
       </Row>
       <Row noGutters className='sunandmoon-daily-card'>
         <Col>Sunrise: {sunrise}</Col>
@@ -80,7 +82,7 @@ const DailyCard = ({ data }) => {
         <Col>Temp Min: {data.temperatureMin}</Col>
         <Col>Temp Max: {data.temperatureMax}</Col>
       </Row>
-    </Card>
+    </DailyCardContainer>
   );
 };
 

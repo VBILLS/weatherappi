@@ -46,7 +46,7 @@ function SearchBox() {
         value={searchField}
       />
       <Button onClick={setLatLngBySearch} outline color='success'>
-        Search
+        Search <i className='fas fa-search-location'></i>
       </Button>
     </InputGroup>
   );

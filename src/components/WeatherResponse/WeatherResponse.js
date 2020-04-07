@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CustCard from '../CustCard/CustCard.component';
+
 import { Card, CardTitle, CardText, Col, Container, Row } from 'reactstrap';
 import './WeatherResopnse.styles.scss';
 
@@ -7,7 +9,7 @@ function WeatherResponse({ cur }) {
   const iconClass = cur.icon;
   return (
     <Container className='WeatherResponse-div m-2'>
-      <Card style={{ width: '300px' }} className='currently'>
+      <CustCard className='currently'>
         <div className='main-title-curSum'>
           <h1 className='cur-icon'>
             <i className={'wi wi-forecast-io-' + iconClass}></i>
@@ -32,7 +34,7 @@ function WeatherResponse({ cur }) {
             <Col>Ozone: {cur.ozone}</Col>
           </Row>
         </CardText>
-      </Card>
+      </CustCard>
     </Container>
   );
 }

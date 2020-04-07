@@ -3,19 +3,21 @@ import React, { useContext, useState } from 'react';
 import { LocationContext } from '../../Context/LocationContext';
 import { WeatherContext } from '../../Context/WeatherContext';
 
+import CustButton from '../CustButton/CustButton.component';
 import { Button, Spinner } from 'reactstrap';
 
 function GetWeatherButton() {
   const [loc, setLoc] = useContext(LocationContext);
-  const [setWeather] = useContext(WeatherContext);
+  const [weather, setWeather] = useContext(WeatherContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  async function fetchWeatherData(lat, lng) {
+  async function fetchWeatherData() {
+    console.log('starting fetchWeatherData');
     const proxy = 'https://cors-anywhere.herokuapp.com/';
     setIsLoading(true);
     await fetch(
-      `${proxy}https://api.darksky.net/forecast/64ba8a3916e562da1c3038e0e454a0e8/${lat},${lng}`,
+      `${proxy}https://api.darksky.net/forecast/64ba8a3916e562da1c3038e0e454a0e8/${loc.lat},${loc.lng}`,
       {
         method: 'GET',
         headers: new Headers({
@@ -25,29 +27,22 @@ function GetWeatherButton() {
     )
       .then((res) => res.json())
       .then((weathData) => {
-        console.log('weathData...', weathData);
         setWeather(weathData);
         setIsLoading(false);
+        console.log('setweathdata - run');
       })
       .catch((err) => console.error);
   }
 
-  function handleGetWeather() {
-    console.log('starting function');
-    if (loc.lat && loc.lng) {
-      fetchWeatherData(loc.lat, loc.lng);
-    } else if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        const lat2 = pos.coords.latitude;
-        const lng2 = pos.coords.longitude;
-        setLoc({ lat: lat2, lng: lng2 });
-        fetchWeatherData(lat2, lng2);
-      });
-    }
-  }
-
   return (
-    <Button onClick={handleGetWeather}>
+    <CustButton
+      onClick={fetchWeatherData}
+      style={{
+        backgroundColor: '#514158',
+        border: 'none',
+        boxShadow: '4px 2px 2px #00000099',
+      }}
+    >
       {isLoading ? (
         <Spinner />
       ) : (
@@ -56,7 +51,7 @@ function GetWeatherButton() {
           <i className='fas fa-thermometer-quarter'></i>
         </p>
       )}
-    </Button>
+    </CustButton>
   );
 }
 

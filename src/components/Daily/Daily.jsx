@@ -4,9 +4,14 @@ import { WeatherContext } from '../../Context/WeatherContext';
 
 import DailyCard from '../DailyCard/DailyCard';
 
-import { Container } from 'reactstrap';
-
-import './Daily.styles.scss';
+import {
+  DailyContainer,
+  DailyCardsContainer,
+  DailyIcon,
+  DailySummary,
+  DailyTitle,
+  DailyTitleContainer,
+} from './Daily.styles';
 
 function Daily() {
   const [weather] = useContext(WeatherContext);
@@ -14,21 +19,21 @@ function Daily() {
   const daily = weather.daily;
 
   return (
-    <Container fluid className='dailymain-div m-2'>
-      <div className='daily-title'>
-        <h3>Daily: </h3>
-        <div className='daily-icon-main'>
-          <i className={'wi wi-forecast-io-' + iconClass}></i>
-        </div>
-        <p className='daily-summary-main'>{daily.summary}</p>
-      </div>
-      <div className='daily-cards'>
+    <DailyContainer>
+      <DailyTitleContainer>
+        <DailyTitle>Daily:</DailyTitle>
+        <DailyIcon className={'wi wi-forecast-io-' + iconClass}></DailyIcon>
+        <DailySummary className='daily-summary-main'>
+          {daily.summary}
+        </DailySummary>
+      </DailyTitleContainer>
+      <DailyCardsContainer>
         {daily.data &&
           daily.data.map((data) => {
             return <DailyCard key={data.time} data={data} />;
           })}
-      </div>
-    </Container>
+      </DailyCardsContainer>
+    </DailyContainer>
   );
 }
 
