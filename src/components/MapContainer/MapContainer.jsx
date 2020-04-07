@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 import { LocationContext } from '../../Context/LocationContext';
@@ -6,7 +6,26 @@ import { LocationContext } from '../../Context/LocationContext';
 // import { Spinner } from 'reactstrap';
 
 function MapContainer() {
-  const [loc] = useContext(LocationContext);
+  const [loc, setLoc] = useContext(LocationContext);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const apiKey = process.env.REACT_APP_API_KEY;
+      fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&key=${apiKey}`
+      )
+        .then((res) => res.json())
+        .then((res) =>
+          setLoc({
+            lat: res.results[0].geometry.location.lat,
+            lng: res.results[0].geometry.location.lng,
+            foradd: res.results[4].formatted_address,
+            address_components: res.results,
+          })
+        )
+        .catch((err) => console.log(err));
+    });
+  }, []);
 
   return (
     <div className='mapcontainer'>

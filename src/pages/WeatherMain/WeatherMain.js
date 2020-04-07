@@ -15,10 +15,17 @@ function WeatherMain() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  function getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      setLoc({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+      console.log('WeatherMain -- geo loc - setloc', loc);
+    });
+  }
+
   async function handleGetLocName() {
     console.log('starting handleGetLocName');
     const apiKey = process.env.REACT_APP_API_KEY;
-
+    setIsLoading(true);
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc.lat},${loc.lng}&key=${apiKey}`
     )
@@ -31,18 +38,22 @@ function WeatherMain() {
             address_components: res.results,
             foradd: res.results[5].formatted_address,
           });
+          setIsLoading(false);
         } else {
           console.log(res.status);
+          setIsLoading(false);
         }
       })
       .catch((err) => console.log(err));
+    setIsLoading(false);
   }
 
-  async function fetchWeatherData(lat, lng) {
+  async function fetchWeatherData() {
+    console.log('starting fetchWeatherData');
     const proxy = 'https://cors-anywhere.herokuapp.com/';
     setIsLoading(true);
     await fetch(
-      `${proxy}https://api.darksky.net/forecast/64ba8a3916e562da1c3038e0e454a0e8/${lat},${lng}`,
+      `${proxy}https://api.darksky.net/forecast/64ba8a3916e562da1c3038e0e454a0e8/${loc.lat},${loc.lng}`,
       {
         method: 'GET',
         headers: new Headers({
@@ -54,26 +65,9 @@ function WeatherMain() {
       .then((weathData) => {
         setWeather(weathData);
         setIsLoading(false);
-        console.log();
+        console.log('setweathdata', loc.lat);
       })
       .catch((err) => console.error);
-  }
-
-  function handleGetWeather() {
-    if (loc.lat && loc.lng) {
-      console.log('locationfromContext - ', loc);
-      fetchWeatherData(loc.lat, loc.lng);
-    } else if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        const lat2 = pos.coords.latitude;
-        const lng2 = pos.coords.longitude;
-        setLoc({ lat: lat2, lng: lng2 });
-        console.log('from geolocation');
-        fetchWeatherData(lat2, lng2);
-      });
-    }
-
-    return;
   }
 
   return (
@@ -82,7 +76,8 @@ function WeatherMain() {
         <Spinner />
       ) : (
         <div>
-          <Button onClick={handleGetWeather}>Get Weather</Button>
+          <Button onClick={getCurrentLocation}>Get Current Location</Button>
+          <Button onClick={fetchWeatherData}>Get Weather</Button>
           <Button onClick={handleGetLocName}>Get Location Name</Button>
         </div>
       )}

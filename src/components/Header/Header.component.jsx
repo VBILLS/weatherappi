@@ -1,18 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { LocationContext } from '../../Context/LocationContext';
+import React, { useState } from 'react';
 
 import GetWeatherButton from '../GetWeatherButton/GetWeatherButton';
 import SearchBox from '../SearchBox/SearchBox';
 
 import {
-  Button,
   Collapse,
   Nav,
   Navbar,
   NavbarBrand,
   NavItem,
   NavbarToggler,
-  NavbarText
+  NavbarText,
 } from 'reactstrap';
 
 import './Header.styles.scss';

@@ -1,6 +1,9 @@
 make pages for currently, minutely hourly, daily
 Start on Currently-
-Make a fetch on initial load for weather info
+Make a fetch on initial load for location data & weather info
+
+currentlocation - on inital load, button click
+searchedlocation - as many times as searched
 
 OAuth 2.0 Client('Web client 1') =>
 {
