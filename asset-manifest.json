@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/weatherappi/static/css/main.eeb8ee82.chunk.css",
+    "main.js": "/weatherappi/static/js/main.25372fa7.chunk.js",
+    "main.js.map": "/weatherappi/static/js/main.25372fa7.chunk.js.map",
+    "runtime-main.js": "/weatherappi/static/js/runtime-main.5c6530fb.js",
+    "runtime-main.js.map": "/weatherappi/static/js/runtime-main.5c6530fb.js.map",
+    "static/css/2.de424728.chunk.css": "/weatherappi/static/css/2.de424728.chunk.css",
+    "static/js/2.54d67d1b.chunk.js": "/weatherappi/static/js/2.54d67d1b.chunk.js",
+    "static/js/2.54d67d1b.chunk.js.map": "/weatherappi/static/js/2.54d67d1b.chunk.js.map",
+    "index.html": "/weatherappi/index.html",
+    "precache-manifest.7a1507260ef136469012813f6987ac2a.js": "/weatherappi/precache-manifest.7a1507260ef136469012813f6987ac2a.js",
+    "service-worker.js": "/weatherappi/service-worker.js",
+    "static/css/2.de424728.chunk.css.map": "/weatherappi/static/css/2.de424728.chunk.css.map",
+    "static/css/main.eeb8ee82.chunk.css.map": "/weatherappi/static/css/main.eeb8ee82.chunk.css.map",
+    "static/js/2.54d67d1b.chunk.js.LICENSE.txt": "/weatherappi/static/js/2.54d67d1b.chunk.js.LICENSE.txt",
+    "static/media/weather-icons.min.css": "/weatherappi/static/media/weathericons-regular-webfont.ecaf8b48.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5c6530fb.js",
+    "static/css/2.de424728.chunk.css",
+    "static/js/2.54d67d1b.chunk.js",
+    "static/css/main.eeb8ee82.chunk.css",
+    "static/js/main.25372fa7.chunk.js"
+  ]
+}
