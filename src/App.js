@@ -3,8 +3,6 @@ import React from 'react';
 import Header from './components/Header/Header.component';
 import MainPage from './pages/MainPage/MainPage';
 
-import TestPage from './pages/TestPage/TestPage';
-
 import { Container } from 'reactstrap';
 
 import './weathericoncss/css/weather-icons.min.css';
@@ -22,7 +20,9 @@ function App() {
             {/* <TestPage /> */}
             <MainPage />
             <div className='poweredby-div'>
-              <a href='https://darksky.net/poweredby/'>Powered By Dark Sky</a>
+              <a href='https://darksky.net/poweredby/'>
+                Weather Powered By Dark Sky
+              </a>
             </div>
           </Container>
         </WeatherProvider>

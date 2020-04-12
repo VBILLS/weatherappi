@@ -22,20 +22,9 @@ const Header = () => {
       <NavbarBrand className='text-light'>Weather App</NavbarBrand>
       <NavbarToggler onClick={toggle} className='mr-2' />
       <Collapse isOpen={isOpen} navbar>
-        <Nav navbar>
-          <NavItem className='mr-2'>
-            <NavbarText>Hourly</NavbarText>
-          </NavItem>
-          <NavItem>
-            <NavbarText>Daily</NavbarText>
-          </NavItem>
-        </Nav>
         <Nav className='ml-auto' navbar>
           <NavItem>
             <SearchBox />
-          </NavItem>
-          <NavItem className='nav-getWeatherButton ml-2'>
-            <GetWeatherButton />
           </NavItem>
         </Nav>
       </Collapse>
