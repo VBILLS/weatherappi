@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState, useEffect } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 
 export const WeatherContext = createContext();
 
