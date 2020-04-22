@@ -41,6 +41,8 @@ function MapContainer() {
     console.log('marker e', e);
   };
 
+  const options = {};
+
   return (
     <div className='mapcontainer'>
       <strong>{loc.foradd}</strong>
